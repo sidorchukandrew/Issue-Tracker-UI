@@ -1,0 +1,71 @@
+@font-face {
+    font-family: 'Poppins-Bold';
+    src: url('../../../assets/fonts/Poppins/Poppins-Bold.woff') format('woff');
+}
+
+.sign-in-page {
+    background-color: #f2f2f2;
+    height: 100vh;
+    color: black;
+    padding: 30px;
+}
+
+#sign-in-card {
+    background-color: #ffffff;
+    width: 390px;
+    margin: auto;
+    color: #38393d;
+    padding-left: 55px;
+    padding-right: 55px;
+    padding-top: 77px;
+    padding-bottom: 77px;
+    overflow: hidden;
+}
+
+#title {
+    font-family: 'Poppins-Bold';
+    width: 100%;
+    display: block;
+    text-align: center;
+    font-size: 30px;
+    margin-bottom: 26px;
+}
+
+.center {
+    display: block;
+    text-align: center;
+}
+
+#form-container {
+    text-align: center;
+}
+
+.full {
+    width: 100%;
+}
+
+#logo {
+    height: 55px;
+    width: 55px;
+    font-size: 40px;
+    background-color: black;
+    color: white;
+    border-radius: 10%;
+    line-height: 55px;
+}
+
+.submit {
+    margin-bottom: 48px;
+    outline-style: none;
+    height: 45px;
+}
+
+a {
+    color: green;
+}
+
+a:hover {
+    text-decoration: underline;
+    color: green;
+    cursor: pointer;
+}

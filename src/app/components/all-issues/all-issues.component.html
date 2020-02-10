@@ -1,0 +1,66 @@
+<div class="grid-container" style="height: 100vh;">
+  <mat-card class="table-container">
+      <mat-form-field class="full-width-table insets" style="font-family: 'Roboto';">
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search here" style="font-family: 'Roboto';">
+      </mat-form-field>
+      <table mat-table [dataSource]="myDataSource" class="full-width-table" matSort aria-label="Elements">
+        <!-- Id Column -->
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-cell">ID</th>
+          <td mat-cell *matCellDef="let row"><a [routerLink]="['/issues', row.id]" style="font-family: 'Roboto';">{{row.id}}</a></td>
+        </ng-container>
+
+        <!-- Description of Issue Column -->
+        <ng-container matColumnDef="issue">
+          <th mat-header-cell *matHeaderCellDef class="header-cell">DESCRIPTION</th>
+          <td mat-cell *matCellDef="let row" class="smaller-text" style="font-family: 'Roboto'; width: 250px;">{{row.issue}}</td>
+        </ng-container>
+
+        <!-- Description of Issue Column -->
+        <ng-container matColumnDef="resolved">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-cell">RESOLVED</th>
+          <td mat-cell *matCellDef="let row" class="smaller-text" style="font-family: 'Roboto';">
+            <mat-checkbox [checked]="row.resolved" [disabled]=true color="primary"></mat-checkbox>
+          </td>
+        </ng-container>
+
+        <!-- Reporter of Issue Column -->
+        <ng-container matColumnDef="reportedBy">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-cell">REPORTER</th>
+          <td mat-cell *matCellDef="let row" class="smaller-text" style="font-family: 'Roboto';">{{row.reportedBy}}</td>
+        </ng-container>
+
+        <!-- Severity of Issue Column -->
+        <ng-container matColumnDef="severity">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-cell">SEVERITY</th>
+          <td mat-cell *matCellDef="let row" class="smaller-text" style="font-family: 'Roboto';">{{row.severity}}</td>
+        </ng-container>
+
+        <!-- Status of Issue Column -->
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-cell">STATUS</th>
+          <td mat-cell *matCellDef="let row" class="smaller-text" style="text-align: center;">
+            <div class="status-container {{row.status | lowercase}}" style="font-family: 'Roboto';">{{row.status}}</div>
+          </td>
+        </ng-container>
+
+        <!-- Date Due of Issue Column -->
+        <ng-container matColumnDef="dateDue">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-cell">DATE DUE</th>
+          <td mat-cell *matCellDef="let row" class="smaller-text" style="font-family: 'Roboto';">{{row.dateDue | date}}</td>
+        </ng-container>
+
+        <!-- Assignee of Issue Column -->
+        <ng-container matColumnDef="assignedTo">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header class="header-cell">ASSIGNED TO</th>
+          <td mat-cell *matCellDef="let row" class="smaller-text" style="font-family: 'Roboto';">{{row.assignedTo}}</td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+
+      <mat-paginator #paginator [pageIndex]="0" [pageSize]="10" [pageSizeOptions]="[10, 20, 50]">
+      </mat-paginator>
+    </mat-card>
+</div>

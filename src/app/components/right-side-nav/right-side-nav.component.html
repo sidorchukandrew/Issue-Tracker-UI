@@ -1,0 +1,124 @@
+<div class="header">
+    New Issue
+</div>
+<div class="body">
+    <div class="grid-container">
+
+        <!-- <div class="container">
+            <form [formGroup]="newIssueForm" (ngSubmit)="submit()" class="form">
+
+                <mat-form-field class="form-field">
+                    <textarea matInput placeholder="Description" formControlName="issue" class="text-area"></textarea>
+                </mat-form-field>
+
+                <table class="column-2-centered">
+                    <tr>
+                        <td class="spread-15-left">
+                            <mat-form-field>
+                                <mat-label>Severity</mat-label>
+                                <mat-select [(value)]="selected" formControlName="severity">
+                                    <mat-option value="harmless">Harmless</mat-option>
+                                    <mat-option value="mild">Mild</mat-option>
+                                    <mat-option value="urgent">Urgent</mat-option>
+                                    <mat-option value="severe">Severe</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </td>
+                        <td class="spread-15-right">
+                            <mat-form-field class="lower">
+                                <input matInput [matDatepicker]="picker" placeholder="Assign a due date" class="test"
+                                    formControlName="dateDue">
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+                            </mat-form-field>
+                        </td>
+                    </tr>
+                </table>
+
+                <mat-form-field class="form-field">
+                    <input type="text" placeholder="Assign to..." matInput [matAutocomplete]="auto"
+                        formControlName="assignedTo">
+                    <mat-autocomplete #auto="matAutocomplete">
+                        <mat-option *ngFor="let user of users" [value]="user">
+                            {{user}}
+                        </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field><br>
+
+                <mat-checkbox labelPosition="before" formControlGroup="resolved">Resolved</mat-checkbox><br>
+
+                <button mat-raised-button color="accent" class="right">SUBMIT</button>
+            </form>
+        </div> -->
+
+        <div class="container">
+            <form [formGroup]="newIssueForm" (ngSubmit)="submit()" class="form">
+
+                <mat-form-field class="form-field full-width">
+                    <input type="text" placeholder="Assign to..." matInput [matAutocomplete]="auto"
+                        formControlName="assignedTo" style="font-family: 'Roboto';">
+                    <mat-autocomplete #auto="matAutocomplete">
+                        <mat-option *ngFor="let user of users" [value]="user" style="font-family: 'Roboto';">
+                            {{user}}
+                        </mat-option>
+                    </mat-autocomplete>
+                </mat-form-field><br>
+
+                <mat-form-field class="form-field full-width text-area" style="font-family: 'Roboto';">
+                    <textarea matInput placeholder="Description" formControlName="issue" class="text-area"
+                        style="font-family: 'Roboto';"></textarea>
+                </mat-form-field>
+                
+                <div class="row" style="margin-top: 20px;">
+                    <div class="col-6">
+                        <mat-form-field class="full-width">
+                            <mat-label>Severity</mat-label>
+                            <mat-select [(value)]="selected" formControlName="severity">
+                                <mat-option value="harmless">Harmless</mat-option>
+                                <mat-option value="mild">Mild</mat-option>
+                                <mat-option value="urgent">Urgent</mat-option>
+                                <mat-option value="severe">Severe</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-6">
+                        <mat-form-field class="full-width">
+                            <mat-label class="font-family: 'Roboto'">Status</mat-label>
+                            <mat-select [(value)]="selected" formControlName="status">
+                                <mat-option value="open">
+                                    <div class="color-indicator blue"></div>
+                                    Open
+                                </mat-option>
+                                <mat-option value="close">
+                                    <div class="color-indicator green"></div>
+                                    Closed
+                                </mat-option>
+                                <mat-option value="pause">
+                                    <div class="color-indicator yellow"></div>
+                                    Paused
+                                </mat-option>
+                                <mat-option value="unopened">
+                                    <div class="color-indicator red"></div>
+                                    Unopened
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-6">
+                        <mat-form-field class="lower" class="full-width shorter">
+                            <input matInput [matDatepicker]="picker" placeholder="Assign a due date"
+                                formControlName="dateDue">
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                    <!-- </div> -->
+                    <div class="col-6">
+                        <mat-checkbox labelPosition="before" formControlGroup="resolved">Resolved</mat-checkbox><br>
+                    </div>
+                </div>
+                <button mat-raised-button color="accent" class="right" style="margin-top:30px; margin-left: 80%; outline-style: none;">SUBMIT</button>
+            </form>
+        </div>
+    </div>
+</div>

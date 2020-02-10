@@ -1,0 +1,42 @@
+
+.menu-icon {
+    font-size: 18px;
+    margin: auto;
+    color: #b2b2b4;
+}
+
+.mat-icon {
+    height: 26px !important;
+    width: 26px !important;
+    font-size: 26px !important;
+    top: 50%;
+    /* color: #c4dbfc; */
+}
+
+.break-md {
+    height: 90px;
+}
+
+.break-sm {
+    height: 70px;
+}
+
+.active {
+    /* color: #38393d; */
+    /* color: #43a047 */
+    color: #3c9d30;
+}
+
+ .nav {
+    display: block;
+    text-align: center;
+}
+
+.menu-title {
+    font-size: 12px;
+    font-family: 'Roboto';
+}
+
+.grey {
+    color: #b2b2b4;
+}

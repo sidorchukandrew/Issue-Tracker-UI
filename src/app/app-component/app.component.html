@@ -1,0 +1,16 @@
+<app-navbar class="navbar-container" style="z-index: 10;" [rightSideNav]="sidenav" *ngIf="isSignedIn()"></app-navbar>
+<mat-sidenav-container style="margin-top: 60px;" *ngIf="isSignedIn()">
+   <mat-sidenav mode="side" opened position="start" [fixedInViewport]=true [fixedTopGap]="0"
+      class="side-nav-container left shadow">
+      <app-left-side-nav></app-left-side-nav>
+   </mat-sidenav>
+   <mat-sidenav mode="over" [(opened)]="opened" position="end" class="side-nav-container right" [fixedTopGap]="70"
+      #sidenav style="width: 600px;">
+      <app-right-side-nav></app-right-side-nav>
+   </mat-sidenav>
+   <button mat-icon-button color="accent" class="menu-btn" id="add-issue" (click)="sidenav.toggle()">
+      <mat-icon class="menu-icon">add</mat-icon>
+   </button>
+   <router-outlet *ngIf="isSignedIn()"></router-outlet>
+</mat-sidenav-container>
+<app-sign-in *ngIf="!isSignedIn()"></app-sign-in>

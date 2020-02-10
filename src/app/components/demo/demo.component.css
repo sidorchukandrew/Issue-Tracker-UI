@@ -1,0 +1,59 @@
+@font-face {
+    font-family: 'Roboto';
+    src: url('../../../assets/fonts/Roboto-Regular.woff') format('woff');
+  }
+
+.signin-google {
+    color: white;
+    border: 0;
+    display: block;
+    font-size: 15px;
+    font-weight: 450;
+    cursor: pointer;
+    text-align: left;
+    border-radius: 4px;
+    height: 40px;
+    width: 250px;
+    background-color: rgb(66, 133, 244);
+    padding: 1px;
+}
+
+.signin-google .logo-container {
+    background-color:
+    rgb(255, 255, 255);
+    border-radius: 2px;
+    display: inline-block;
+    height: 24px;
+    margin-left: 12px;
+    text-align: center;
+    width: 24px;
+    vertical-align: middle;
+}
+
+.signin-google .logo-container .logo {
+    position: relative;
+    margin: 2px auto auto;
+}
+
+.signin-google:focus {
+    box-shadow: 1px 1px 2px 2px rgb(178, 203, 243);
+    background-color: #4285F4;
+    color: white;
+}
+
+.signin-google img {
+   float: left;
+   padding-right: 10px;
+   padding-left: 0px;
+}
+
+.signin-with-text{
+    font-family: 'Roboto';
+    color: white;
+    display: inline-block;
+    padding-left: 10px;
+    line-height: 20px;
+    vertical-align: middle;
+}
+
+
