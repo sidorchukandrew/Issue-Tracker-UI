@@ -112,7 +112,7 @@ export class UserDashboardComponent implements AfterViewInit, OnInit {
   }
 
   render() {
-    this.issueService.getAllIssuesAssignedToUser("John Doe").subscribe(
+    this.issueService.getAllIssuesAssignedToUser(this.issueService.getCurrentUserFullName()).subscribe(
       data => {
         this.issuesAssigned = this.extractIssuesFromJSON(data);
         this.myIssuesDataSource = new MatTableDataSource();

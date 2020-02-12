@@ -9,7 +9,9 @@
 
     <span class="example-spacer"></span>
     <div class="btn-container">
-        {{ getUsername() }}
+        <div id="welcome-user">
+            Welcome, {{ getUsername() }}
+        </div>
         <button mat-raised-button color="accent" style="outline-style: none; margin-right: 40px;"
             (click)="signout();">Sign Out</button>
     </div>

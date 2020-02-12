@@ -13,7 +13,7 @@ export class NavbarComponent implements OnInit {
   constructor(private issueService: IssueService) { }
 
   ngOnInit() {
-    this.currentUser = this.issueService.getCurrentUser();
+    this.currentUser = this.issueService.getCurrentUserFullName();
   }
 
   signout() {

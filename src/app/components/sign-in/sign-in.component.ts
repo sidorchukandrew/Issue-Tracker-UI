@@ -17,11 +17,11 @@ export class SignInComponent implements OnInit {
     });
   }
 
-  ngOnInit() { }
+  ngOnInit() {
+  }
 
   public submit(): void {
-    var success: boolean = this.issueService.signinWithOauth(this.signinForm.value['username'], this.signinForm.value['password']);
-    console.log("The request was successful : " + success);
+    this.issueService.signinWithOauth(this.signinForm.value['username'], this.signinForm.value['password']);
   }
 
   public getSigninForm() {

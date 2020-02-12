@@ -1,5 +1,8 @@
 <div class="sign-in-page">
     <mat-card id="sign-in-card" color="primary" mat-elevation-z8>
+        <div id="overlay" *ngIf="issueService.isLoadingSignin();">
+            <mat-progress-spinner id="loading" mode=indeterminate color=accent strokeWidth=5></mat-progress-spinner>
+        </div>
         <span id="title" class="center">Welcome</span>
         <span class="center" style="margin-bottom: 48px;">
             <mat-icon id="logo">bug_report</mat-icon>
@@ -10,7 +13,7 @@
         <mat-card-content>
             <form id="form-container" [formGroup]="getSigninForm()" (ngSubmit)="submit()">
                 <mat-form-field style="margin-bottom: 48px;" class="full" color="accent" appearence=fill>
-                    <input matInput placeholder="Username" formControlName="username">
+                    <input matInput placeholder="Username" formControlName="username" disabled=false>
                 </mat-form-field>
                 <mat-form-field style="margin-bottom: 48px;" class="full" color="accent" appearence=fill>
                     <input matInput type="password" placeholder="Password" formControlName="password">

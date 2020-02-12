@@ -21,7 +21,7 @@
 
 .toolbar-container {
     background-color: #38393d;
-    height: 60px;
+    height: 62px;
     border-bottom: 1px solid #dee2e6;
     color: white;
 }
@@ -29,10 +29,15 @@
 .mat-button.mat-primary,
 .mat-icon-button.mat-primary,
 .mat-stroked-button.mat-primary {
-    /* color: white; */
     color: #f1f1f2;
 }
 
 .example-spacer {
     flex: 1 1 auto;
+}
+
+#welcome-user {
+    font-size: 15px;
+    margin-right: 20px;
+    display: inline;
 }
