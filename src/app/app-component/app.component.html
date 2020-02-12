@@ -1,4 +1,4 @@
-<app-navbar class="navbar-container" style="z-index: 10;" [rightSideNav]="sidenav" *ngIf="isSignedIn()"></app-navbar>
+<app-navbar class="navbar-container" style="z-index: 10;" *ngIf="isSignedIn()"></app-navbar>
 <mat-sidenav-container style="margin-top: 60px;" *ngIf="isSignedIn()">
    <mat-sidenav mode="side" opened position="start" [fixedInViewport]=true [fixedTopGap]="0"
       class="side-nav-container left shadow">
@@ -11,6 +11,6 @@
    <button mat-icon-button color="accent" class="menu-btn" id="add-issue" (click)="sidenav.toggle()">
       <mat-icon class="menu-icon">add</mat-icon>
    </button>
-   <router-outlet *ngIf="isSignedIn()"></router-outlet>
+   <router-outlet></router-outlet>
 </mat-sidenav-container>
 <app-sign-in *ngIf="!isSignedIn()"></app-sign-in>

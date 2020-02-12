@@ -56,7 +56,8 @@
             <!-- Date Due of Issue Column -->
             <ng-container matColumnDef="dateDue">
               <th mat-header-cell *matHeaderCellDef mat-sort-header>DATE DUE</th>
-              <td mat-cell *matCellDef="let row" class="smaller-text" style="font-family: 'Roboto';">{{row.dateDue | date}}
+              <td mat-cell *matCellDef="let row" class="smaller-text" style="font-family: 'Roboto';">
+                {{row.dateDue | date}}
               </td>
             </ng-container>
 
@@ -178,7 +179,4 @@
     </mat-grid-tile>
   </mat-grid-list>
 </div>
-
-<button (click)="loginWithOauth()">Click me</button>
-<button (click)="showAccess()">Show</button>
 <!--grid-container-->

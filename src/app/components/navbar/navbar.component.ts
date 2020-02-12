@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { MatSidenav } from '@angular/material';
+import { IssueService } from 'src/app/services/issue.service';
 
 @Component({
   selector: 'app-navbar',
@@ -8,10 +9,19 @@ import { MatSidenav } from '@angular/material';
 })
 export class NavbarComponent implements OnInit {
 
-  @Input() rightSideNav: MatSidenav;
-  constructor() { }
+  private currentUser: string;
+  constructor(private issueService: IssueService) { }
 
   ngOnInit() {
+    this.currentUser = this.issueService.getCurrentUser();
+  }
+
+  signout() {
+    this.issueService.signout();
+  }
+
+  public getUsername(): string {
+    return this.currentUser;
   }
 
 }

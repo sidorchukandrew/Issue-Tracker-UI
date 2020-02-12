@@ -10,30 +10,33 @@ import { OAuthService } from 'angular-oauth2-oidc';
 export class IssueService implements OnInit {
 
   private signedIn = false;
+  private accessTokenResult;
+  private currentUser: string;
 
   /*
     Set up the OAuth service for password flow
   */
   constructor(private http: HttpClient, private router: Router, private auth: OAuthService) {
+    this.auth.useHttpBasicAuth = true;
     auth.tokenEndpoint = 'http://localhost:8080/oauth/token';
     auth.clientId = 'issue_tracker';
     auth.scope = 'READ WRITE';
     auth.dummyClientSecret = 'pin';
-    this.auth.useHttpBasicAuth = true;
-
+    localStorage.clear();
   }
 
-  public getAllIssues() { return this.http.get('http://localhost:8080/api/issues'); }
+  public getAllIssues() { return this.http.get('http://localhost:8081/api/issues'); }
 
-  public getAllUsers() { return this.http.get('http://localhost:8080/api/users'); }
+  public getAllUsers() { return this.http.get('http://localhost:8081/api/users'); }
 
   public getAllIssuesAssignedToUser(name: string) {
 
     const params = new HttpParams().set('user', name);
-    return this.http.get('http://localhost:8080/api/user', { params });
+    return this.http.get('http://localhost:8081/api/user', { params });
   }
 
-  ngOnInit() { }
+  ngOnInit() {
+  }
 
   submitNewIssue(issue: Issue) {
 
@@ -44,17 +47,41 @@ export class IssueService implements OnInit {
         'Content-Type': 'application/json'
       })
     };
-    this.http.post<Issue>('http://localhost:8080/api/issues', issue, httpOptions).subscribe();
+    this.http.post<Issue>('http://localhost:8081/api/issues', issue, httpOptions).subscribe();
   }
-  public loginWithOauth(): void {
-    this.auth.fetchTokenUsingPasswordFlow('asidorch', 'kpass').then(resp => console.log(resp));
+  public signinWithOauth(username: string, password: string): boolean {
+
+    this.getAccessToken = null;
+
+    this.auth.fetchTokenUsingPasswordFlow(username, password).then(resp => {
+      if (resp['access_token']) {
+        this.accessTokenResult = resp;
+        localStorage.setItem("username", resp['username']);
+        localStorage.setItem("access_token", resp['access_token']);
+        localStorage.setItem("refresh_token", resp['refresh_token']);
+        this.signedIn = true;
+      }
+    }).catch(error => {
+      return false;
+    });
+
+    return this.accessTokenResult == null;
   }
 
   public getAccessToken(): void {
 
   }
 
+  public signout(): void {
+    this.signedIn = false;
+  }
+
   public isSignedIn(): boolean {
     return this.signedIn;
   }
+
+  public getCurrentUser(): string {
+    return localStorage.getItem("username");
+  }
+
 }

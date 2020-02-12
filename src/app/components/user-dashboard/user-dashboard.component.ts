@@ -68,13 +68,13 @@ export class UserDashboardComponent implements AfterViewInit, OnInit {
         else if (status['name'] == 'Unopened')
           this.unopenedTotal++;
 
-          var dateOfIssue = new Date(issue['dateDue']).getTime();
-          
-          if((dateOfIssue < today)  && !issue['resolved']) {
-            var overdue = Math.floor((today - dateOfIssue) / (1000*60*60*24));
+        var dateOfIssue = new Date(issue['dateDue']).getTime();
 
-            if(overdue != 0)
-              overdueIssues.push({id: issue['id'], description: issue['issue'], overdueBy: overdue});
+        if ((dateOfIssue < today) && !issue['resolved']) {
+          var overdue = Math.floor((today - dateOfIssue) / (1000 * 60 * 60 * 24));
+
+          if (overdue != 0)
+            overdueIssues.push({ id: issue['id'], description: issue['issue'], overdueBy: overdue });
         }
 
         this.issuesTotal++;
@@ -85,7 +85,7 @@ export class UserDashboardComponent implements AfterViewInit, OnInit {
       this.overdueIssuesDataSource.data = overdueIssues;
     });
 
-    if(window.innerWidth <= 1300) {
+    if (window.innerWidth <= 1300) {
       this.breakpoint = 2;
       this.dashboardBreakpoint = 2;
     }
@@ -100,7 +100,7 @@ export class UserDashboardComponent implements AfterViewInit, OnInit {
   }
 
   onResize(event) {
-    if(window.innerWidth <= 1300) {
+    if (window.innerWidth <= 1300) {
       this.breakpoint = 2;
       this.dashboardBreakpoint = 2;
     }
@@ -171,7 +171,7 @@ export class UserDashboardComponent implements AfterViewInit, OnInit {
       var assignedTo = issueObject['assignedTo'];
       issue.assignedTo = reporter['name'];
 
-      if(!issue.resolved)
+      if (!issue.resolved)
         allIssues.push(issue);
       index++;
     } // end while
@@ -201,11 +201,4 @@ export class UserDashboardComponent implements AfterViewInit, OnInit {
     this.breakdownSelected = "Resolved";
   }
 
-  public loginWithOauth() {
-    this.issueService.loginWithOauth();
-  }
-
-  public showAccess() {
-    console.log(this.issueService.getAccessToken());
-  }
 }

@@ -8,12 +8,12 @@
             <img src="../../../assets/icon.svg">
         </span> -->
         <mat-card-content>
-            <form id="form-container">
+            <form id="form-container" [formGroup]="getSigninForm()" (ngSubmit)="submit()">
                 <mat-form-field style="margin-bottom: 48px;" class="full" color="accent" appearence=fill>
-                    <input matInput placeholder="Username">
+                    <input matInput placeholder="Username" formControlName="username">
                 </mat-form-field>
                 <mat-form-field style="margin-bottom: 48px;" class="full" color="accent" appearence=fill>
-                    <input matInput type="password" placeholder="Password">
+                    <input matInput type="password" placeholder="Password" formControlName="password">
                 </mat-form-field>
                 <button mat-raised-button class="full submit" color="accent">SIGN IN</button>
             </form>

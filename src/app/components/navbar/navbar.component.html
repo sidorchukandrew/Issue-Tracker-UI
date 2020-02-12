@@ -9,6 +9,8 @@
 
     <span class="example-spacer"></span>
     <div class="btn-container">
-        <button mat-raised-button color="accent" style="outline-style: none; margin-right: 40px;" (click)="rightSideNav.toggle();">New Issue</button>
+        {{ getUsername() }}
+        <button mat-raised-button color="accent" style="outline-style: none; margin-right: 40px;"
+            (click)="signout();">Sign Out</button>
     </div>
 </mat-toolbar>

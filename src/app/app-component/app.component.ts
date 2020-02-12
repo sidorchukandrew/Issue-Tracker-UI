@@ -17,6 +17,6 @@ export class AppComponent {
   }
 
   public isSignedIn(): boolean {
-    return this.signedIn;
+    return this.issueService.isSignedIn();
   }
 }
