@@ -117,4 +117,12 @@ export class IssueService implements OnInit {
     return this.loadingSignIn;
   }
 
+  public getIssueBasedOnId(id: string): any {
+    const params = new HttpParams()
+      .set('id', id)
+      .set('access_token', localStorage.getItem('access_token'));
+
+    return this.http.get('http://localhost:8081/api/issue', { params });
+  }
+
 }

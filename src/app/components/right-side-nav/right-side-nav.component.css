@@ -1,81 +1,70 @@
-@font-face {
-    font-family: 'Roboto';
-    src: url('../../../assets/fonts/Roboto-Regular.woff') format('woff');
-  }
+.grid-container {
+  margin: 0 10px 10px 10px;
+  padding-top: 10px;
+}
 
-  * {
-    font-family: 'Roboto';
-  }
-  .grid-container {
-    margin: 10px;
-  }
+.header {
+  width: 100%;
+  background-color: #f7f7f7;
+  padding: 20px;
+  height: 60px;
+  font-size: 18px;
+  font-weight: 500;
+  border-bottom: 1px solid #c4c4c4;
+}
 
-  .header {
-    width: 100%;
-    background-color: #f1f2f7;
-    padding: 20px;
-    height: 60px;
-    font-size: 18px;
-    font-weight: 500;
-    border-bottom: 1px solid #c4c4c4;
-  }
+.body {
+  width: 100%;
+  background-color: white;
+}
 
-  .body {
-    width: 100%;
-    background-color: white;
-  }
+.full-width {
+  width: 100%;
+}
 
-  .full-width {
-    width: 100%;
-  }
+.text-area {
+  height: 200px;
+}
 
-  .text-area {
-    height: 200px;
-  }
+.color-indicator {
+  width: 15px;
+  height: 15px;
+  float: right;
+  margin-top: 15px;
+  margin-right: 15px;
+  border-left-style: solid;
+  border-left-width: 1px;
+  border-top-width: 1px;
+  border-top-style: solid;
+  border-right-width: 1px;
+  border-right-style: solid;
+  border-radius: 20%;
+}
 
-  .color-indicator {
-    width: 15px;
-    height: 15px;
-    float: right;
-    margin-top: 15px;
-    margin-right:15px;
-    border-left-style: solid;
-    border-left-width: 1px;
-    border-top-width: 1px;
-    border-top-style: solid;
-    border-right-width: 1px;
-    border-right-style: solid;
-    border-radius: 20%;
-  }
+.blue {
+  background-color: #0075c3;
+  border-color: #0075c3;
+}
 
-  .blue {
-    /* background-color: #568dd5;
-    border-color: #568dd5; */
-    background-color: #0075c3;
-    border-color: #0075c3;
-  }
+.green {
+  background-color: #2ca01c;
+  border-color: #2ca01c;
+}
 
-  .green {
-    background-color: #2ca01c;
-    border-color: #2ca01c;
-  }
+.yellow {
+  background-color: #ff8000;
+  border-color: #ff8000;
+}
 
-  .yellow {
-    background-color: #ff8000;
-    border-color: #ff8000;
-  }
+.red {
+  background-color: #e26a6a;
+  border-color: #e26a6a;
+}
 
-  .red {
-    /* background-color: #fd397a;
-    border-color: #fd397a; */
-    background-color: #e26a6a;
-    border-color: #e26a6a;
-  }
+.shorter {
+  max-height: 60px;
+}
 
-  .shorter {
-    max-height: 60px;
-  }
-
-  .break {
-    height: 20px;
-  }
+.break {
+  height: 20px;
+}

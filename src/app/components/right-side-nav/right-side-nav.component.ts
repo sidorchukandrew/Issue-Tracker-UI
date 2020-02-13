@@ -10,12 +10,10 @@ import { Issue } from '../../model/issue';
 })
 export class RightSideNavComponent implements OnInit {
 
-
   users: string[] = new Array();
   newIssueForm;
-  currentColor = new FormControl();
 
-  constructor(formBuilder: FormBuilder, private issueService: IssueService){
+  constructor(formBuilder: FormBuilder, private issueService: IssueService) {
     this.newIssueForm = formBuilder.group({
       issue: '',
       dateDue: Date(),
@@ -27,28 +25,27 @@ export class RightSideNavComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.issueService.getAllUsers().subscribe(data => 
-      {
-        let index: number = 0;
+    this.issueService.getAllUsers().subscribe(data => {
+      let index: number = 0;
 
-        while(data[index]) {
-          var jsonUserObject = data[index];
-          this.users.push(jsonUserObject['name']);
-          index++;
-        }
-      });
+      while (data[index]) {
+        var jsonUserObject = data[index];
+        this.users.push(jsonUserObject['name']);
+        index++;
+      }
+    });
   }
 
   submit() {
     const formData: Issue = new Issue();
-    formData.issue        = this.newIssueForm.value['issue'];
-    formData.assignedTo   = this.newIssueForm.value['assignedTo'];
-    formData.dateDue      = new Date(this.newIssueForm.value['dateDue']).toISOString().slice(0, 10);
-    formData.resolved     = this.newIssueForm.value['resolved'];
-    formData.severity     = this.newIssueForm.value['severity'];
-    formData.status       = this.newIssueForm.value['status'];
-    formData.dateCreated  = new Date().toISOString().slice(0, 10);
-    formData.reportedBy   = "Brad Matthews";
+    formData.issue = this.newIssueForm.value['issue'];
+    formData.assignedTo = this.newIssueForm.value['assignedTo'];
+    formData.dateDue = new Date(this.newIssueForm.value['dateDue']).toISOString().slice(0, 10);
+    formData.resolved = this.newIssueForm.value['resolved'];
+    formData.severity = this.newIssueForm.value['severity'];
+    formData.status = this.newIssueForm.value['status'];
+    formData.dateCreated = new Date().toISOString().slice(0, 10);
+    formData.reportedBy = this.issueService.getCurrentUserFullName();
     this.issueService.submitNewIssue(formData);
   }
 }

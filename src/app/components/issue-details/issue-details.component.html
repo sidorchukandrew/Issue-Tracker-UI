@@ -1,1 +1,108 @@
-<p>id entered : {{ id }}</p>
+<div class="header" *ngIf="getCurrentIssue()">
+    Issue # {{ getCurrentIssue().id }}
+</div>
+<div class="body">
+
+    <mat-card>
+        Issue Information
+
+        <form [formGroup]="updateIssueForm" (ngSubmit)="update()" class="form" *ngIf="updateIssueForm">
+
+            <mat-form-field class="form-field full-width text-area">
+                <div matPrefix class="item-label">Description</div>
+                <textarea matInput formControlName="issue" class="text-area"></textarea>
+            </mat-form-field>
+
+            <mat-grid-list cols="2" rowHeight="60px">
+                <mat-grid-tile>
+                    <div class="form-item">
+                        <mat-form-field class="form-field full-width">
+                            <div matPrefix class="item-label">Assigned to</div>
+                            <input type="text" matInput [matAutocomplete]="auto" formControlName="assignedTo">
+                            <mat-autocomplete #auto="matAutocomplete">
+                                <mat-option *ngFor="let user of users" [value]="user">
+                                    {{user}}
+                                </mat-option>
+                            </mat-autocomplete>
+                        </mat-form-field>
+                    </div>
+                </mat-grid-tile>
+
+                <mat-grid-tile>
+                    <div class="form-item">
+                        <mat-form-field class="form-field full-width">
+                            <div matPrefix class="item-label">Reported by</div>
+                            <input type="text" matInput formControlName="reporter" readonly>
+                        </mat-form-field>
+                    </div>
+                </mat-grid-tile>
+
+                <mat-grid-tile>
+                    <div class="form-item">
+                        <mat-form-field class="full-width">
+                            <div matPrefix class="item-label">Severity</div>
+                            <mat-select formControlName="severity">
+                                <mat-option value="Harmless">Harmless</mat-option>
+                                <mat-option value="Mild">Mild</mat-option>
+                                <mat-option value="Urgent">Urgent</mat-option>
+                                <mat-option value="Severe">Severe</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </mat-grid-tile>
+
+                <mat-grid-tile>
+                    <div class="form-item">
+                        <mat-form-field class="full-width">
+                            <div matPrefix class="item-label">Status</div>
+                            <mat-select formControlName="status">
+                                <mat-option value="Opened">
+                                    <div class="color-indicator blue"></div>
+                                    Open
+                                </mat-option>
+                                <mat-option value="Closed">
+                                    <div class="color-indicator green"></div>
+                                    Closed
+                                </mat-option>
+                                <mat-option value="Paused">
+                                    <div class="color-indicator yellow"></div>
+                                    Paused
+                                </mat-option>
+                                <mat-option value="Unopened">
+                                    <div class="color-indicator red"></div>
+                                    Unopened
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </mat-grid-tile>
+
+                <mat-grid-tile>
+                    <div class="form-item">
+                        <mat-form-field class="full-width">
+                            <div matPrefix class="item-label">Due Date</div>
+                            <input matInput [matDatepicker]="picker" formControlName="dateDue">
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </mat-grid-tile>
+
+                <mat-grid-tile>
+                    <div class="form-item">
+                        <mat-form-field class="full-width">
+                            <div matPrefix class="item-label">Date Created</div>
+                            <input matInput formControlName="dateCreated">
+                        </mat-form-field>
+                    </div>
+                </mat-grid-tile>
+
+                <mat-grid-tile>
+                    <mat-checkbox labelPosition="before" formControlGroup="resolved">Resolved</mat-checkbox>
+                </mat-grid-tile>
+            </mat-grid-list>
+
+            <button mat-raised-button color="accent">UPDATE</button>
+        </form>
+    </mat-card>
+</div>

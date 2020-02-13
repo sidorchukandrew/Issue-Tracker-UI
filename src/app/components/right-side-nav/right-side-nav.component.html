@@ -7,26 +7,25 @@
         <div class="container">
             <form [formGroup]="newIssueForm" (ngSubmit)="submit()" class="form">
 
-                <mat-form-field class="form-field full-width">
+                <mat-form-field class="form-field full-width" appearance="fill">
                     <input type="text" placeholder="Assign to..." matInput [matAutocomplete]="auto"
                         formControlName="assignedTo" style="font-family: 'Roboto';">
                     <mat-autocomplete #auto="matAutocomplete">
-                        <mat-option *ngFor="let user of users" [value]="user" style="font-family: 'Roboto';">
+                        <mat-option *ngFor="let user of users" [value]="user">
                             {{user}}
                         </mat-option>
                     </mat-autocomplete>
                 </mat-form-field><br>
 
-                <mat-form-field class="form-field full-width text-area" style="font-family: 'Roboto';">
-                    <textarea matInput placeholder="Description" formControlName="issue" class="text-area"
-                        style="font-family: 'Roboto';"></textarea>
+                <mat-form-field class="form-field full-width text-area">
+                    <textarea matInput placeholder="Description" formControlName="issue" class="text-area"></textarea>
                 </mat-form-field>
 
                 <div class="row" style="margin-top: 20px;">
                     <div class="col-6">
-                        <mat-form-field class="full-width">
+                        <mat-form-field class="full-width" appearance="fill">
                             <mat-label>Severity</mat-label>
-                            <mat-select [(value)]="selected" formControlName="severity">
+                            <mat-select formControlName="severity">
                                 <mat-option value="harmless">Harmless</mat-option>
                                 <mat-option value="mild">Mild</mat-option>
                                 <mat-option value="urgent">Urgent</mat-option>
@@ -35,9 +34,9 @@
                         </mat-form-field>
                     </div>
                     <div class="col-6">
-                        <mat-form-field class="full-width">
-                            <mat-label class="font-family: 'Roboto'">Status</mat-label>
-                            <mat-select [(value)]="selected" formControlName="status">
+                        <mat-form-field class="full-width" appearance="fill">
+                            <mat-label>Status</mat-label>
+                            <mat-select formControlName="status">
                                 <mat-option value="open">
                                     <div class="color-indicator blue"></div>
                                     Open
@@ -57,19 +56,21 @@
                             </mat-select>
                         </mat-form-field>
                     </div>
+                </div>
+                <div class="row" style="margin-top: 20px;">
                     <div class="col-6">
-                        <mat-form-field class="lower" class="full-width shorter">
+                        <mat-form-field class="full shorter lower" appearance="fill">
                             <input matInput [matDatepicker]="picker" placeholder="Assign a due date"
                                 formControlName="dateDue">
                             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                             <mat-datepicker #picker></mat-datepicker>
                         </mat-form-field>
                     </div>
-                    <!-- </div> -->
                     <div class="col-6">
                         <mat-checkbox labelPosition="before" formControlGroup="resolved">Resolved</mat-checkbox><br>
                     </div>
                 </div>
+
                 <button mat-raised-button color="accent" class="right"
                     style="margin-top:30px; margin-left: 80%; outline-style: none;">SUBMIT</button>
             </form>

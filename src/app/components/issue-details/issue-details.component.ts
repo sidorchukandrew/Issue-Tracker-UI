@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
+import { Issue } from '../../model/issue';
+import { IssueService } from 'src/app/services/issue.service';
+import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-issue',
@@ -9,17 +12,59 @@ import { switchMap } from 'rxjs/operators';
 })
 export class IssueDetailsComponent implements OnInit {
 
-  constructor(private router: Router, private route: ActivatedRoute) { }
-  public id;
+  private id;
+  private updateIssueForm;
+  private currentIssue: Issue;
+  private users: string[] = new Array();
+
+  constructor(private router: Router, private route: ActivatedRoute, private issueService: IssueService, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
-    // this.id = this.route.paramMap.pipe(
-    //   switchMap((params: ParamMap) =>
-    //     params.get('id')
-    //   ));
-
     this.id = this.route.snapshot.paramMap.get('id');
-    console.log(this.id);
+
+    this.issueService.getIssueBasedOnId(this.id).subscribe(data => {
+
+      this.updateIssueForm = this.formBuilder.group({
+        id: data['id'],
+        issue: data['issue'],
+        resolved: data['resolved'],
+        dateDue: data['dateDue'],
+        dateCreated: data['dateCreated'],
+
+        assignedTo: this.getName(data['assignedTo']),
+        severity: this.getName(data['severity']),
+        status: this.getName(data['status']),
+        reporter: this.getName(data['reporter'])
+      });
+
+      this.currentIssue = new Issue();
+      this.currentIssue.reportedBy = this.getName(data['reporter']);
+      this.currentIssue.assignedTo = this.getName(data['assignedTo']);
+      this.currentIssue.status = this.getName(data['status']);
+      this.currentIssue.severity = this.getName(data['severity']);
+      this.currentIssue.id = data['id'];
+    });
+
+    this.issueService.getAllUsers().subscribe(data => {
+      let index: number = 0;
+
+      while (data[index]) {
+        var jsonUserObject = data[index];
+        this.users.push(jsonUserObject['name']);
+        index++;
+      }
+    });
   }
 
+  private getName(jsonObject: any): string {
+    return jsonObject['name'];
+  }
+
+  public getCurrentIssue(): Issue {
+    return this.currentIssue;
+  }
+
+  public update(): void {
+
+  }
 }
