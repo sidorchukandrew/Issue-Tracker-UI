@@ -165,7 +165,7 @@ export class UserDashboardComponent implements AfterViewInit, OnInit {
 
       // Getting reporter
       var reporter = issueObject['reporter'];
-      issue.reportedBy = reporter['name'];
+      issue.reporter = reporter['name'];
 
       // Getting reporter
       var assignedTo = issueObject['assignedTo'];

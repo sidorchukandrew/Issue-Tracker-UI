@@ -7,7 +7,7 @@ import {
   MatSidenavModule, MatSelectModule, MatToolbarModule, MatTableModule,
   MatButtonModule, MatCardModule, MatInputModule, MatOptionModule, MatAutocompleteModule,
   MatCheckboxModule, MatDatepickerModule, MatNativeDateModule, MatIconModule,
-  MatProgressBarModule, MatButtonToggleModule, MatProgressSpinnerModule, MatRippleModule
+  MatProgressBarModule, MatButtonToggleModule, MatProgressSpinnerModule, MatRippleModule, MatSnackBarModule
 } from '@angular/material/';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
@@ -51,7 +51,7 @@ const appRoutes = [
     MatCardModule, MatButtonModule, MatInputModule, MatOptionModule, MatAutocompleteModule, MatCheckboxModule, MatDatepickerModule,
     MatNativeDateModule, NgbModule, MatIconModule, LayoutModule, MatListModule, MatGridListModule, MatMenuModule,
     MatPaginatorModule, MatSortModule, MatProgressBarModule, MatButtonToggleModule, MatProgressSpinnerModule, MatRippleModule,
-    OAuthModule.forRoot()
+    OAuthModule.forRoot(), MatSnackBarModule
   ],
   providers: [MatDatepickerModule],
   bootstrap: [AppComponent]

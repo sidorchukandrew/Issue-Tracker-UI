@@ -2,7 +2,7 @@ export class Issue {
     id: number;
     issue: string;
     resolved: boolean;
-    reportedBy: string;
+    reporter: string;
     severity: string;
     status: string;
     dateDue: string;

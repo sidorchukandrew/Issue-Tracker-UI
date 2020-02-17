@@ -29,7 +29,7 @@
                                 <mat-option value="harmless">Harmless</mat-option>
                                 <mat-option value="mild">Mild</mat-option>
                                 <mat-option value="urgent">Urgent</mat-option>
-                                <mat-option value="severe">Severe</mat-option>
+                                <mat-option value="critical">Critical</mat-option>
                             </mat-select>
                         </mat-form-field>
                     </div>
@@ -37,15 +37,15 @@
                         <mat-form-field class="full-width" appearance="fill">
                             <mat-label>Status</mat-label>
                             <mat-select formControlName="status">
-                                <mat-option value="open">
+                                <mat-option value="opened">
                                     <div class="color-indicator blue"></div>
-                                    Open
+                                    Opened
                                 </mat-option>
-                                <mat-option value="close">
+                                <mat-option value="closed">
                                     <div class="color-indicator green"></div>
                                     Closed
                                 </mat-option>
-                                <mat-option value="pause">
+                                <mat-option value="paused">
                                     <div class="color-indicator yellow"></div>
                                     Paused
                                 </mat-option>

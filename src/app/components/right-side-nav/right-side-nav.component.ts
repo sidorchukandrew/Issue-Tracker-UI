@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
 import { IssueService } from '../../services/issue.service';
 import { Issue } from '../../model/issue';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-right-side-nav',
@@ -13,7 +14,7 @@ export class RightSideNavComponent implements OnInit {
   users: string[] = new Array();
   newIssueForm;
 
-  constructor(formBuilder: FormBuilder, private issueService: IssueService) {
+  constructor(formBuilder: FormBuilder, private issueService: IssueService, private snackBar: MatSnackBar) {
     this.newIssueForm = formBuilder.group({
       issue: '',
       dateDue: Date(),
@@ -45,8 +46,13 @@ export class RightSideNavComponent implements OnInit {
     formData.severity = this.newIssueForm.value['severity'];
     formData.status = this.newIssueForm.value['status'];
     formData.dateCreated = new Date().toISOString().slice(0, 10);
-    formData.reportedBy = this.issueService.getCurrentUserFullName();
+    formData.reporter = this.issueService.getCurrentUserFullName();
     this.issueService.submitNewIssue(formData);
+    this.showSuccessMessage();
+  }
+
+  showSuccessMessage(): void {
+    this.snackBar.open("Saved successfully", "", { duration: 2000, });
   }
 }
 

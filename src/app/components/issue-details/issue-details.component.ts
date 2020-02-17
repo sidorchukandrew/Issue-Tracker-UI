@@ -4,6 +4,7 @@ import { switchMap } from 'rxjs/operators';
 import { Issue } from '../../model/issue';
 import { IssueService } from 'src/app/services/issue.service';
 import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-issue',
@@ -17,7 +18,8 @@ export class IssueDetailsComponent implements OnInit {
   private currentIssue: Issue;
   private users: string[] = new Array();
 
-  constructor(private router: Router, private route: ActivatedRoute, private issueService: IssueService, private formBuilder: FormBuilder) { }
+  constructor(private router: Router, private route: ActivatedRoute, private issueService: IssueService,
+    private formBuilder: FormBuilder, private snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('id');
@@ -38,7 +40,7 @@ export class IssueDetailsComponent implements OnInit {
       });
 
       this.currentIssue = new Issue();
-      this.currentIssue.reportedBy = this.getName(data['reporter']);
+      this.currentIssue.reporter = this.getName(data['reporter']);
       this.currentIssue.assignedTo = this.getName(data['assignedTo']);
       this.currentIssue.status = this.getName(data['status']);
       this.currentIssue.severity = this.getName(data['severity']);
@@ -65,6 +67,25 @@ export class IssueDetailsComponent implements OnInit {
   }
 
   public update(): void {
+    const formData: Issue = new Issue();
+    formData.issue = this.updateIssueForm.value['issue'];
+    formData.assignedTo = this.updateIssueForm.value['assignedTo'];
+    formData.dateDue = new Date(this.updateIssueForm.value['dateDue']).toISOString().slice(0, 10);
+    formData.resolved = this.updateIssueForm.value['resolved'];
+    formData.severity = this.updateIssueForm.value['severity'];
+    formData.status = this.updateIssueForm.value['status'];
+    formData.dateCreated = new Date().toISOString().slice(0, 10);
+    formData.reporter = this.issueService.getCurrentUserFullName();
+    formData.id = this.currentIssue.id;
+    this.issueService.updateIssue(formData);
+    this.showSuccessMessage();
+  }
 
+  public print(event) {
+    this.updateIssueForm.value['resolved'] = event['checked'];
+  }
+
+  showSuccessMessage(): void {
+    this.snackBar.open("Saved successfully", "", { duration: 2000, });
   }
 }

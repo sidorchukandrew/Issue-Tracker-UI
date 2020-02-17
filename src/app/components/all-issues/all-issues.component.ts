@@ -17,7 +17,7 @@ export class AllIssuesComponent implements AfterViewInit, OnInit {
   @ViewChild(MatTable, { static: false }) table: MatTable<Issue>;
 
   myDataSource: any;
-  displayedColumns = ['id', 'issue', 'resolved', 'reportedBy', 'severity', 'status', 'dateDue', 'assignedTo'];
+  displayedColumns = ['id', 'issue', 'resolved', 'reporter', 'severity', 'status', 'dateDue', 'assignedTo'];
 
   applyFilter(filterValue: string) {
     this.myDataSource.filter = filterValue.trim().toLowerCase();
@@ -34,58 +34,57 @@ export class AllIssuesComponent implements AfterViewInit, OnInit {
   }
 
   render() {
-    this.issueService.getAllIssues().subscribe(data => 
-      {
-        var allIssues: Issue[] = new Array();
-        var index: number = 0;
-        while (data[index]) {
+    this.issueService.getAllIssues().subscribe(data => {
+      var allIssues: Issue[] = new Array();
+      var index: number = 0;
+      while (data[index]) {
 
-          // To copy into
-          let issue: Issue = new Issue();
+        // To copy into
+        let issue: Issue = new Issue();
 
-          // JSON 
-          let issueObject = data[index];
+        // JSON 
+        let issueObject = data[index];
 
-          // Issue's id
-          issue.id = issueObject['id'];
+        // Issue's id
+        issue.id = issueObject['id'];
 
-          // Date issue was created
-          issue.dateCreated = issueObject['dateCreated'];
+        // Date issue was created
+        issue.dateCreated = issueObject['dateCreated'];
 
-          // Date due
-          issue.dateDue = issueObject['dateDue'];
+        // Date due
+        issue.dateDue = issueObject['dateDue'];
 
-          // Issue description
-          issue.issue = issueObject['issue'];
+        // Issue description
+        issue.issue = issueObject['issue'];
 
-          // Was the issue resolved yet
-          issue.resolved = issueObject['resolved'];
+        // Was the issue resolved yet
+        issue.resolved = issueObject['resolved'];
 
 
-          // Getting severity
-          var severity = issueObject['severity'];
-          issue.severity = severity['name'];
+        // Getting severity
+        var severity = issueObject['severity'];
+        issue.severity = severity['name'];
 
-          // Getting status
-          var status = issueObject['status'];
-          issue.status = status['name'];
+        // Getting status
+        var status = issueObject['status'];
+        issue.status = status['name'];
 
-          // Getting reporter
-          var reporter = issueObject['reporter'];
-          issue.reportedBy = reporter['name'];
+        // Getting reporter
+        var reporter = issueObject['reporter'];
+        issue.reporter = reporter['name'];
 
-          // Getting reporter
-          var assignedTo = issueObject['assignedTo'];
-          issue.assignedTo = reporter['name'];
+        // Getting reporter
+        var assignedTo = issueObject['assignedTo'];
+        issue.assignedTo = reporter['name'];
 
-          allIssues.push(issue);
-          index++;
-        }
-        this.myDataSource = new MatTableDataSource();
-        this.myDataSource.data = allIssues;
-        this.myDataSource.paginator = this.paginator;
-        this.myDataSource.sort = this.sort;
+        allIssues.push(issue);
+        index++;
       }
+      this.myDataSource = new MatTableDataSource();
+      this.myDataSource.data = allIssues;
+      this.myDataSource.paginator = this.paginator;
+      this.myDataSource.sort = this.sort;
+    }
     );
   }
 }

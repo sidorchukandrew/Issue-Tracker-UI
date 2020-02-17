@@ -52,16 +52,10 @@ export class IssueService implements OnInit {
   }
 
   public submitNewIssue(issue: Issue): void {
+    const params = new HttpParams()
+      .set('access_token', localStorage.getItem('access_token'));
 
-    console.log(issue);
-
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      })
-    };
-
-    this.http.post<Issue>('http://localhost:8081/api/issues', issue, httpOptions).subscribe();
+    this.http.post<Issue>('http://localhost:8081/api/issues', issue, { params }).subscribe();
   }
 
   public signinWithOauth(username: string, password: string): void {
@@ -123,6 +117,14 @@ export class IssueService implements OnInit {
       .set('access_token', localStorage.getItem('access_token'));
 
     return this.http.get('http://localhost:8081/api/issue', { params });
+  }
+
+  public updateIssue(issue: Issue): void {
+    const params = new HttpParams()
+      .set('access_token', localStorage.getItem('access_token'))
+      .set('id', issue.id + '');
+
+    this.http.put('http://localhost:8081/api/issue', issue, { params }).subscribe();
   }
 
 }

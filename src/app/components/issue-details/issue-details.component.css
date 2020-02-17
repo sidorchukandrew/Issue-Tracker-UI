@@ -72,5 +72,15 @@
 }
 
 .form {
-    margin-left: 40px;
+    padding: 20px;
+}
+
+.mat-card {
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 20px;
+}
+
+.body {
+    height: 100vh;
 }
